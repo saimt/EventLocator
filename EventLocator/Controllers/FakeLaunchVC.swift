@@ -12,9 +12,11 @@ import UserNotifications
 import CoreLocation
 class FakeLaunchVC: UIViewController {
     
+    //MARK: Variables
     let notificationCenter = UNUserNotificationCenter.current()
     let options: UNAuthorizationOptions = [.alert, .sound, .badge]
     
+    //MARK: Load
     override func viewDidLoad() {
         super.viewDidLoad()
         

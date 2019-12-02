@@ -12,15 +12,17 @@ import MediaBrowser
 import SDWebImage
 class PicturesVC: BaseVC {
 
-    
+    //MARK: Outlets
     @IBOutlet weak var cvPictures: UICollectionView!
     @IBOutlet weak var btnAddPictures: UIButton!
     @IBOutlet weak var btnClose: UIBarButtonItem!
     
-    
+    //MARK: Variables
     var eventData: EventMapper!
     var isInVicinity = false
     var mediaArray = [Media]()
+    
+    //MARK: Load
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -32,6 +34,7 @@ class PicturesVC: BaseVC {
         
     }
     
+    //MARK: Methods
     func initView() {
         let mosaicLayout = TRMosaicLayout()
         self.cvPictures?.collectionViewLayout = mosaicLayout
@@ -58,6 +61,7 @@ class PicturesVC: BaseVC {
         return photo
     }
 
+    //MARK: Actions
     @IBAction func btnCloseAction(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }

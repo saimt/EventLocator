@@ -11,16 +11,19 @@ import GoogleMaps
 import CoreLocation
 class DraggableMapVC: UIViewController {
 
+    //MARK: Outlets
     @IBOutlet var vwMap: GMSMapView!
     @IBOutlet weak var btnCancel: UIBarButtonItem!
     @IBOutlet weak var txtLocationName: UITextField!
     @IBOutlet weak var btnDone: UIBarButtonItem!
     
-    
+    //MARK: Variables
     var callback: ((_ locationName: String,_ cordinates: String) -> Void)?
     var marker: GMSMarker!
     let locationManager = CLLocationManager()
     var selectedCoordinates = ""
+    
+    //MARK: Load
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -32,6 +35,7 @@ class DraggableMapVC: UIViewController {
         getCurrentLocation()
     }
     
+    //MARK: Methods
     func initView() {
         txtLocationName.setLeftPaddingPoints(10)
     }
@@ -65,6 +69,7 @@ class DraggableMapVC: UIViewController {
         }
     }
     
+    //MARK: Actions
     @IBAction func btnCancelAction(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true) {
             self.callback?("","")

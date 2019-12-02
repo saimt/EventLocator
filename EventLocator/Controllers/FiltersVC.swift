@@ -10,22 +10,25 @@ import UIKit
 
 class FiltersVC: BaseVC {
 
+    //MARK: Outlets
     @IBOutlet weak var lblDistance: UILabel!
     @IBOutlet weak var btnDismiss: UIButton!
     @IBOutlet weak var sliderDistance: UISlider!
     @IBOutlet weak var switchEndedEvents: UISwitch!
     
-    
+    //MARK: Variables
     var callback: ((_ distanceChanged: Bool, _ showEventsChanged: Bool) -> Void)?
     var sliderValueChanged = false
     var switchValueChanged = false
     
+    //MARK: Load
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSliderData()
         switchEndedEvents.isOn = Global.userData.showEndedEvents
     }
     
+    //MARK: Methods
     func setupSliderData() {
         var radius = 0.2
         if Global.userData.userRadius != nil {
@@ -38,6 +41,7 @@ class FiltersVC: BaseVC {
         
     }
     
+    //MARK: Actions
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         Global.userData.userRadius = Float(Int(sender.value * 10))
         lblDistance.text = "\(Int(sender.value * 10)) km"

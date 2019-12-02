@@ -10,6 +10,7 @@ import UIKit
 import GooglePlaces
 class CreateEventVC: BaseVC {
 
+    //MARK: Outlets
     @IBOutlet weak var imgCover: UIImageView!
     @IBOutlet weak var btnCancel: UIBarButtonItem!
     @IBOutlet weak var btnCreate: UIBarButtonItem!
@@ -19,13 +20,17 @@ class CreateEventVC: BaseVC {
     @IBOutlet weak var txtStartTime: UITextField!
     @IBOutlet weak var txtEndTime: UITextField!
     
+    //MARK: Variables
     var eventData = EventMapper(fromDictionary: [:])
     var coverPhoto: UIImage!
+    
+    //MARK: Load
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
     }
     
+    //MARK: Methods
     func initView() {
         let textfields = [txtEventName,txtEventLocation,txtStartTime,txtEndTime]
         for textfield in textfields {
@@ -35,6 +40,8 @@ class CreateEventVC: BaseVC {
         txtEndTime.tag = 3
     }
 
+    //MARK: Actions
+    
     @IBAction func btnCreateAction(_ sender: UIBarButtonItem) {
         if coverPhoto == nil {
             self.showToast("Please select event cover photo")

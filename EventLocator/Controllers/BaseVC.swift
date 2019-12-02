@@ -11,16 +11,16 @@ import Toast_Swift
 import NVActivityIndicatorView
 class BaseVC: UIViewController {
 
-    
+    //MARK: Variables
     var isIndicatorShown = false
     var activityIndicator: NVActivityIndicatorView!
+    
+    //MARK: Load
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
+    //MARK: Methods
     func showToast(_ message: String) {
         self.view.makeToast(message, duration: 2.0, position: .bottom)
     }
