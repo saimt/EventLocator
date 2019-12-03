@@ -178,8 +178,8 @@ public class ApiManager {
                     }
                     
                     //checking if event location is in user's search area
-                    let distance = Global.userData.userLocation.calculateDistance(eventLocation: eventData.eventLocation)
-                    let distanceInKilometres = Double(distance/1000)
+                    let distance = Global.userData?.userLocation?.calculateDistance(eventLocation: eventData.eventLocation)
+                    let distanceInKilometres = Double((distance ?? 0)/1000)
                     if distanceInKilometres > Double(Global.userData.userRadius) {
                         continue
                     }
