@@ -121,7 +121,7 @@ class BlurLoader: UIView {
 
 extension UIColor {
     static let transparent_radius = UIColor(hex: 0x0B83A9, alpha: 0.3)
-    static let theme_purple = UIColor(hex: 0x0B83A9)
+    public static let theme_purple = UIColor(hex: 0x0B83A9)
     // 0x5856D6 indigo
     
 }

@@ -110,27 +110,28 @@ extension CreateEventVC: UITextFieldDelegate {
         }
         else if textField.tag == 2 {
             self.view.endEditing(true)
-            let alert = UIAlertController(style: .actionSheet, title: "Select start time")
-            alert.addDatePicker(mode: .dateAndTime, date: Date(), minimumDate: Date(), maximumDate: Date().dateByAddingYears(5)) { date in
-                // action with selected date
-                textField.text = date.dateTimeString(ofStyle: .medium)
-                self.eventData.eventStart = Double(date.dateTimeString().convertToTimestamp())
+            let picker = DatePickerDialog()
+            picker.show("Select start time", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", defaultDate: Date(), minimumDate: Date(), maximumDate: Date().dateByAddingYears(1), datePickerMode: .dateAndTime) { (date) in
+                if date == nil {
+                    return
+                }
+                textField.text = date!.dateTimeString(ofStyle: .medium)
+                self.eventData.eventStart = Double(date!.dateTimeString().convertToTimestamp())
             }
-            alert.addAction(title: "OK", style: .cancel)
-            self.present(alert, animated: true, completion: nil)
+
             
             return false
         }
         else {
             self.view.endEditing(true)
-            let alert = UIAlertController(style: .actionSheet, title: "Select end time")
-            alert.addDatePicker(mode: .dateAndTime, date: Date(), minimumDate: Date(), maximumDate: Date().dateByAddingYears(5)) { date in
-                // action with selected date
-                textField.text = date.dateTimeString(ofStyle: .medium)
-                self.eventData.eventEnd = Double(date.dateTimeString().convertToTimestamp())
+            let picker = DatePickerDialog()
+            picker.show("Select start time", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", defaultDate: Date(), minimumDate: Date(), maximumDate: Date().dateByAddingYears(1), datePickerMode: .dateAndTime) { (date) in
+                if date == nil {
+                    return
+                }
+                textField.text = date!.dateTimeString(ofStyle: .medium)
+                 self.eventData.eventEnd = Double(date!.dateTimeString().convertToTimestamp())
             }
-            alert.addAction(title: "OK", style: .cancel)
-            self.present(alert, animated: true, completion: nil)
             return false
 
         }
