@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         GMSServices.provideAPIKey(Constants.GMaps_API_Key)
         GMSPlacesClient.provideAPIKey(Constants.GMaps_API_Key)
         FirebaseApp.configure()
-        loadCache()
         Auth.auth().signInAnonymously() { (authResult, error) in
             if error == nil {
                 guard let user = authResult?.user else { return }
@@ -34,13 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func loadCache() {
-        if UserDefaults.standard.object(forKey: Constants.registeredUsers) != nil {
-            Global.userData = (NSKeyedUnarchiver.unarchiveObject(with: (UserDefaults.standard.object(forKey: Constants.registeredUsers) as? Data)!) as? UserMapper)!
-        } else {
-            Global.userData = nil
-        }
-    }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,

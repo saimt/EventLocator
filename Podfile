@@ -20,5 +20,4 @@ pod 'TRMosaicLayout'
 pod 'MediaBrowser'
 pod 'MaterialShowcase'
 pod 'NVActivityIndicatorView'
-
 end

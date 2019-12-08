@@ -30,10 +30,19 @@ class FakeLaunchVC: UIViewController {
             }
           }
         }
-        
+        self.loadCache()
         DispatchQueue.main.asyncAfter(deadline: .now()+2.5) {
+            
             let vc = self.storyboard?.instantiateViewController(identifier: "MapVC") as! MapVC
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func loadCache() {
+        if UserDefaults.standard.object(forKey: Constants.registeredUsers) != nil {
+            Global.userData = (NSKeyedUnarchiver.unarchiveObject(with: (UserDefaults.standard.object(forKey: Constants.registeredUsers) as? Data)!) as? UserMapper)!
+        } else {
+            //Global.userData = UserMapper(fromDictionary: [:])
         }
     }
 }

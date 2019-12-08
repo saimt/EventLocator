@@ -11,4 +11,5 @@ import Foundation
 public struct Global {
     static var eventsData = [EventMapper]()
     static var userData: UserMapper!
+    static var userId: String!
 }

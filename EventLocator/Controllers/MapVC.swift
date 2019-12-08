@@ -346,7 +346,7 @@ extension MapVC: CLLocationManagerDelegate {
         Global.userData.userLocation = "\(locValue.latitude),\(locValue.longitude)"
         ApiManager.updateUserData()
         ApiManager.getGeocodeData(latitude: locValue.latitude, longitude: locValue.longitude) { (response) in
-            let geocodeData = GecoderResponse(fromDictionary: response as! [String:Any])
+//            _ = GecoderResponse(fromDictionary: response as! [String:Any])
             self.setMap(latitude: locValue.latitude, longitude: locValue.longitude, zoomLevel: 13)
             self.drawRadius()
             
