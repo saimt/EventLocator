@@ -10,10 +10,11 @@ import UIKit
 
 class GalleryCVCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageView: UIImageView!
+    //MARK: Load
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    
 }

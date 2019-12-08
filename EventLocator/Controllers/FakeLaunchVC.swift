@@ -31,13 +31,23 @@ class FakeLaunchVC: UIViewController {
           }
         }
         self.loadCache()
-        DispatchQueue.main.asyncAfter(deadline: .now()+2.5) {
+        
+        //Delay to show launchscreen
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
             
-            let vc = self.storyboard?.instantiateViewController(identifier: "MapVC") as! MapVC
-            self.navigationController?.pushViewController(vc, animated: true)
+            if #available(iOS 13.0, *) {
+                let vc = self.storyboard?.instantiateViewController(identifier: "MapVC") as! MapVC
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapVC") as! MapVC
+                self.navigationController?.pushViewController(vc, animated: true)
+                // Fallback on earlier versions
+            }
+            
         }
     }
     
+    //MARK: Methods
     func loadCache() {
         if UserDefaults.standard.object(forKey: Constants.registeredUsers) != nil {
             Global.userData = (NSKeyedUnarchiver.unarchiveObject(with: (UserDefaults.standard.object(forKey: Constants.registeredUsers) as? Data)!) as? UserMapper)!

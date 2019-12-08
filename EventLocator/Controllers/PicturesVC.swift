@@ -111,6 +111,7 @@ extension PicturesVC: UICollectionViewDataSource {
 
 extension PicturesVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // instantiate media browser controller
         let displayActionButton = true
         let displaySelectionButtons = false
         let displayMediaNavigationArrows = false

@@ -139,6 +139,8 @@ public class ApiManager {
         }
     }
     
+    
+    //Low quality to show as thumbnails because high quality crashes the app because of memory issue
     static func uploadLowQualityPicture(picture: UIImage, eventId: String, completion: @escaping(String,Error?)->Void) {
         let imageData = picture.jpegData(compressionQuality: 0.2)
         let metadata = StorageMetadata()
@@ -207,37 +209,29 @@ public class ApiManager {
     @escaping
      (Any?, Error?) -> ()) {
             
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=\(mode)&key=\(Constants.GMaps_API_Key)"
-            
-            // print("googleDirectionAPI URL: ", url)
-            
-            Alamofire.request(url).validate().responseJSON { response in
-                
-                DispatchQueue.main.async(execute: {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                })
-                
-                if let status = response.response?.statusCode {
-                    switch(status){
-                    case 200: //success
-                        //to get JSON return value
-                        if let result = response.result.value {
-                            let jdict = result as! NSDictionary
-                            completionHandler(jdict, nil)
-                        }
-                        
-                    default:
-                        let error = response.result.error
-                        completionHandler(nil, error)
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=\(mode)&key=\(Constants.GMaps_API_Key)"
+                    
+        Alamofire.request(url).validate().responseJSON { response in
+            if let status = response.response?.statusCode {
+                switch(status){
+                case 200: //success
+                    //to get JSON return value
+                    if let result = response.result.value {
+                        let jdict = result as! NSDictionary
+                        completionHandler(jdict, nil)
                     }
                     
-                } else {
+                default:
                     let error = response.result.error
                     completionHandler(nil, error)
                 }
+                
+            } else {
+                let error = response.result.error
+                completionHandler(nil, error)
             }
         }
+    }
     
 }
 

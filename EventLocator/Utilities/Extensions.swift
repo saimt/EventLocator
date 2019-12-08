@@ -10,17 +10,6 @@ import Foundation
 import UIKit
 import GoogleMaps
 extension UIView {
-    func showLoader() {
-        let blurLoader = BlurLoader(frame: frame)
-        self.addSubview(blurLoader)
-    }
-    
-    func removeLoader() {
-        if let blurLoader = subviews.first(where: { $0 is BlurLoader }) {
-            blurLoader.removeFromSuperview()
-        }
-    }
-    
     func roundCorners(corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
@@ -30,14 +19,6 @@ extension UIView {
 }
 
 extension Date {
-    
-//    func dateString(_ format: String = "MMM-dd-YYYY, hh:mm a") -> String {
-//        
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = format
-//        
-//        return dateFormatter.string(from: self)
-//    }
     func currentTimeMillis() -> Int64 {
         return Int64((self.timeIntervalSince1970 * 1000).rounded())
     }
@@ -62,8 +43,6 @@ extension String {
         //initialize the Date Formatter
         let dateFormatter = DateFormatter()
         
-//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         //specify the date Format
         dateFormatter.dateFormat="dd.MM.yyyy, hh.mm aa"
 
@@ -88,37 +67,6 @@ extension String {
     }
 }
 
-class BlurLoader: UIView {
-    
-    var blurEffectView: UIVisualEffectView?
-    
-    override init(frame: CGRect) {
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        
-        blurEffectView.frame = frame
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.blurEffectView = blurEffectView
-        super.init(frame: frame)
-        addSubview(blurEffectView)
-        addLoader()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func addLoader() {
-        guard let blurEffectView = blurEffectView else { return }
-        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        activityIndicator.color = UIColor.gray
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        blurEffectView.contentView.addSubview(activityIndicator)
-        activityIndicator.center = blurEffectView.contentView.center
-        activityIndicator.startAnimating()
-    }
-}
-
 extension UIColor {
     static let transparent_radius = UIColor(hex: 0x0B83A9, alpha: 0.3)
     public static let theme_purple = UIColor(hex: 0x0B83A9)
@@ -132,6 +80,7 @@ extension UITextField {
         self.leftView = paddingView
         self.leftViewMode = .always
     }
+    
     func setRightPaddingPoints(_ amount:CGFloat) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
         self.rightView = paddingView

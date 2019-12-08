@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
-class DraggableMapVC: UIViewController {
+class DraggableMapVC: BaseVC {
 
     //MARK: Outlets
     @IBOutlet var vwMap: GMSMapView!
@@ -81,10 +81,6 @@ class DraggableMapVC: UIViewController {
             self.callback?(self.txtLocationName.text ?? "", self.selectedCoordinates)
         }
         
-    }
-    
-    @IBAction func btnLocateAction(_ sender: UIButton) {
-        getCurrentLocation()
     }
 }
 

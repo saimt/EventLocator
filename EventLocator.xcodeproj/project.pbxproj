@@ -198,6 +198,37 @@
 			path = GoogleDirections;
 			sourceTree = "<group>";
 		};
+		E22FB15C239D79E9009DF273 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E2BD39AC23845AC20031CD8A /* AppDelegate.swift */,
+				E2BD39AE23845AC20031CD8A /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E22FB15D239D7A51009DF273 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E21ABA2F238AC81500EBFEEB /* ApiManager.swift */,
+				E2EBB937238EF03400E1ABCD /* ImagePickerManager.swift */,
+				E21ABA31238AC82800EBFEEB /* Extensions.swift */,
+				E272AB2B238BE8D90077DB49 /* Helper.swift */,
+				E2EBB9C423901B3100E1ABCD /* Global.swift */,
+				E215446623946CD000541BD5 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E22FB15E239D7A96009DF273 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E2BD39B223845AC20031CD8A /* Main.storyboard */,
+				E2BD39B723845AC40031CD8A /* LaunchScreen.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		E272AB2D238BFE130077DB49 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,19 +283,12 @@
 				E2EBB93B238F0C6100E1ABCD /* ThirdParty */,
 				E272AB2D238BFE130077DB49 /* Models */,
 				E2BD39C023845AD00031CD8A /* Controllers */,
-				E2BD39AC23845AC20031CD8A /* AppDelegate.swift */,
-				E2BD39AE23845AC20031CD8A /* SceneDelegate.swift */,
-				E2EBB937238EF03400E1ABCD /* ImagePickerManager.swift */,
-				E2BD39B223845AC20031CD8A /* Main.storyboard */,
+				E22FB15C239D79E9009DF273 /* Application */,
+				E22FB15D239D7A51009DF273 /* Utilities */,
+				E22FB15E239D7A96009DF273 /* UI */,
 				E2BD39B523845AC40031CD8A /* Assets.xcassets */,
-				E2BD39B723845AC40031CD8A /* LaunchScreen.storyboard */,
 				E2BD39BA23845AC40031CD8A /* Info.plist */,
 				E21ABA33238ACB0C00EBFEEB /* GoogleService-Info.plist */,
-				E21ABA2F238AC81500EBFEEB /* ApiManager.swift */,
-				E21ABA31238AC82800EBFEEB /* Extensions.swift */,
-				E272AB2B238BE8D90077DB49 /* Helper.swift */,
-				E2EBB9C423901B3100E1ABCD /* Global.swift */,
-				E215446623946CD000541BD5 /* Constants.swift */,
 			);
 			path = EventLocator;
 			sourceTree = "<group>";
@@ -675,7 +699,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HY5H9R7CD;
 				INFOPLIST_FILE = EventLocator/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -697,7 +721,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HY5H9R7CD;
 				INFOPLIST_FILE = EventLocator/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

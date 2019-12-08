@@ -15,15 +15,14 @@ import UserNotifications
 @available(iOS 13.0, *)
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        // zain: AIzaSyAxDS7u44Q7XqlBp8LhLu8301yF1kmKUx0
+        //Configure Google maps
         GMSServices.provideAPIKey(Constants.GMaps_API_Key)
         GMSPlacesClient.provideAPIKey(Constants.GMaps_API_Key)
+        //Configure Firebase
         FirebaseApp.configure()
+        //Firebase anonymous signin
         Auth.auth().signInAnonymously() { (authResult, error) in
             if error == nil {
                 guard let user = authResult?.user else { return }

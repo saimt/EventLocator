@@ -47,9 +47,7 @@ class FiltersVC: BaseVC {
         lblDistance.text = "\(Int(sender.value * 10)) km"
         ApiManager.updateUserData()
         sliderValueChanged = true
-        
     }
-    
     
     @IBAction func btnDismissAction(_ sender: UIButton) {
         self.dismiss(animated: true) {

@@ -206,7 +206,6 @@ class MapVC: BaseVC {
         let path = GMSPath.init(fromEncodedPath: routePoints!)
         
         DispatchQueue.main.async {
-            
             let bounds = GMSCoordinateBounds(path: path!)
             self.vwMap.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 70.0))
             if self.polyLine?.map != nil {
