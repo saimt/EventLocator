@@ -226,7 +226,7 @@ class MapVC: BaseVC {
             let latitude = Double(location[0])!
             let longitude = Double(location[1])!
             let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            let region = CLCircularRegion(center: center, radius: 300, identifier: event.eventName)
+            let region = CLCircularRegion(center: center, radius: 100, identifier: event.eventName)
             region.notifyOnEntry = true
             region.notifyOnExit = false
             let trigger = UNLocationNotificationTrigger(region: region, repeats: false)

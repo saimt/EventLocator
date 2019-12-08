@@ -28,6 +28,8 @@
 	<string>Event Locator would like to access your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Event Locator would like to access your location</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Event Locator would like to access your gallery to save pictures</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Event Locator would like to access your gallery</string>
 	<key>UIApplicationSceneManifest</key>
@@ -60,8 +62,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

@@ -40,11 +40,15 @@ class PicturesVC: BaseVC {
         self.cvPictures?.collectionViewLayout = mosaicLayout
         mosaicLayout.delegate = self
         
+        resetDataSource()
+    }
+    
+    func resetDataSource() {
+        mediaArray.removeAll()
         for picture in eventData.pictures {
             let image = self.webMediaPhoto(url: picture.pictureUrl, caption: nil)
             self.mediaArray.append(image)
         }
-        
     }
     
     func webMediaPhoto(url: String, caption: String?) -> Media {
@@ -77,6 +81,7 @@ class PicturesVC: BaseVC {
                 self.hideLoader()
                 if error == nil {
                     self.eventData.pictures.append(pictureData!)
+                    self.resetDataSource()
                     self.cvPictures.reloadData()
                 }
                 else {
