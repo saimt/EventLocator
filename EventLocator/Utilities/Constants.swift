@@ -36,4 +36,5 @@ public struct Constants {
     
     
     public static let showcaseShown = "showcaseShown"
+    public static let mapsShowcaseShown = "mapsShowcaseShown"
 }

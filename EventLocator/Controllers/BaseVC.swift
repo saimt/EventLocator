@@ -21,14 +21,22 @@ class BaseVC: UIViewController {
     }
     
     //MARK: Methods
-    func showToast(_ message: String) {
-        self.view.makeToast(message, duration: 2.0, position: .bottom)
+    func showToast(_ message: String,_ type: String = "default") {
+        // create a new style
+        var style = ToastStyle()
+
+        // this is just one of many style options
+        if type == "error" {
+            style.backgroundColor = .red
+        }
+        self.view.makeToast(message, duration: 2.0, position: .bottom, style: style)
     }
     
     func showLoader() {
         if isIndicatorShown {
             return
         }
+        
         let activityData = ActivityData(size: nil, message: nil, messageFont: nil, messageSpacing: nil, type: .ballClipRotatePulse, color: nil, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil)
         isIndicatorShown = true
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)

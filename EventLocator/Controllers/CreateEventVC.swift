@@ -44,19 +44,19 @@ class CreateEventVC: BaseVC {
     
     @IBAction func btnCreateAction(_ sender: UIBarButtonItem) {
         if coverPhoto == nil {
-            self.showToast("Please select event cover photo")
+            self.showToast("Please select event cover photo", "error")
         }
         else if eventData.eventName == nil {
-            self.showToast("Please enter event name")
+            self.showToast("Please enter event name", "error")
         }
         else if eventData.eventLocation == nil {
-            self.showToast("Please select event location")
+            self.showToast("Please select event location", "error")
         }
         else if eventData.eventStart == nil {
-            self.showToast("Please enter event start time")
+            self.showToast("Please enter event start time", "error")
         }
         else if eventData.eventEnd == nil {
-            self.showToast("Please enter event end time")
+            self.showToast("Please enter event end time", "error")
         }
         else {
             self.showLoader()
@@ -115,7 +115,14 @@ extension CreateEventVC: UITextFieldDelegate {
                 if date == nil {
                     return
                 }
-                textField.text = date!.dateTimeString(ofStyle: .medium)
+                let dateFormatter = DateFormatter()
+                
+                //specify the date Format
+                dateFormatter.dateFormat="dd.MM.yyyy, hh.mm aa"
+
+                //get date from string
+                let dateString = dateFormatter.string(from: date!)
+                textField.text = dateString
                 self.eventData.eventStart = Double(date!.dateTimeString().convertToTimestamp())
             }
 
@@ -129,7 +136,14 @@ extension CreateEventVC: UITextFieldDelegate {
                 if date == nil {
                     return
                 }
-                textField.text = date!.dateTimeString(ofStyle: .medium)
+                let dateFormatter = DateFormatter()
+                
+                //specify the date Format
+                dateFormatter.dateFormat="dd.MM.yyyy, hh.mm aa"
+
+                //get date from string
+                let dateString = dateFormatter.string(from: date!)
+                textField.text = dateString
                  self.eventData.eventEnd = Double(date!.dateTimeString().convertToTimestamp())
             }
             return false

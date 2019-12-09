@@ -276,7 +276,7 @@ class MapVC: BaseVC {
     @IBAction func btnDirectionsAction(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: "Select transport mode", preferredStyle: UIAlertController.Style.actionSheet)
         alert.addAction(UIAlertAction(title: "Walk", style: .default, handler: { (action) in
-            ApiManager.getDirections(origin: Global.userData.userLocation, destination: self.tappedEvent.eventLocation, mode: TransportMode.WALKING.rawValue) { (response, error) in
+            ApiManager.getDirections(origin: Global.userData.userLocation ?? "", destination: self.tappedEvent.eventLocation, mode: TransportMode.WALKING.rawValue) { (response, error) in
                 if let data = response as? NSDictionary {
                     self.directions = DirectionsResponse(fromDictionary: data as! [String : Any])
                     self.hideDetailView()
@@ -285,7 +285,7 @@ class MapVC: BaseVC {
             }
         }))
         alert.addAction(UIAlertAction(title: "Bicycle", style: .default, handler: { (action) in
-            ApiManager.getDirections(origin: Global.userData.userLocation, destination: self.tappedEvent.eventLocation, mode: TransportMode.BICYCLING.rawValue) { (response, error) in
+            ApiManager.getDirections(origin: Global.userData.userLocation ?? "", destination: self.tappedEvent.eventLocation, mode: TransportMode.BICYCLING.rawValue) { (response, error) in
                 if let data = response as? NSDictionary {
                     self.directions = DirectionsResponse(fromDictionary: data as! [String : Any])
                     self.hideDetailView()
@@ -294,7 +294,7 @@ class MapVC: BaseVC {
             }
         }))
         alert.addAction(UIAlertAction(title: "Drive", style: .default, handler: { (action) in
-            ApiManager.getDirections(origin: Global.userData.userLocation, destination: self.tappedEvent.eventLocation, mode: TransportMode.DRIVING.rawValue) { (response, error) in
+            ApiManager.getDirections(origin: Global.userData.userLocation ?? "", destination: self.tappedEvent.eventLocation, mode: TransportMode.DRIVING.rawValue) { (response, error) in
                 if let data = response as? NSDictionary {
                     self.directions = DirectionsResponse(fromDictionary: data as! [String : Any])
                     self.hideDetailView()

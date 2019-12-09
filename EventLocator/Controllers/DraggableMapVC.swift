@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import MaterialShowcase
 class DraggableMapVC: BaseVC {
 
     //MARK: Outlets
@@ -35,6 +36,14 @@ class DraggableMapVC: BaseVC {
         getCurrentLocation()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if let _ = UserDefaults.standard.value(forKey: Constants.mapsShowcaseShown) as? Bool {}
+        else {
+            UserDefaults.standard.setValue(true, forKey: Constants.mapsShowcaseShown)
+            addShowcase(title: "Select Location", subtitle: "Long tap on marker to drag the marker")
+        }
+        
+    }
     //MARK: Methods
     func initView() {
         txtLocationName.setLeftPaddingPoints(10)
@@ -44,6 +53,19 @@ class DraggableMapVC: BaseVC {
         vwMap.isMyLocationEnabled = true
         vwMap.settings.compassButton = true
         vwMap.settings.myLocationButton = true
+    }
+    
+    func addShowcase(title: String, subtitle: String) {
+        let showcase = MaterialShowcase()
+        showcase.targetHolderRadius = 0
+        showcase.targetHolderColor = UIColor.clear
+        showcase.backgroundPromptColor = UIColor.theme_purple
+        showcase.setTargetView(view: vwMap)
+        showcase.primaryText = title
+        showcase.secondaryText = subtitle
+        showcase.backgroundViewType = .full
+        showcase.show(completion: {
+        })
     }
     
     func setMap(latitude: Double, longitude: Double, locationName: String) {
