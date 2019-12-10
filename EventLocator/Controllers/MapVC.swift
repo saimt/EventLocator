@@ -40,6 +40,7 @@ class MapVC: BaseVC {
     var directions = DirectionsResponse(fromDictionary: [:])
     var directionsReceived = false
     var polyLine: GMSPolyline!
+    
     //MARK:- Load
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,10 +185,7 @@ class MapVC: BaseVC {
         circle.strokeColor = UIColor.theme_purple
         circle.strokeWidth = 2
         circle.map = vwMap
-        let locValue = vwMap.myLocation?.coordinate
-//        if locValue != nil {
-//            setMap(latitude: locValue!.latitude, longitude: locValue!.longitude, zoomLevel: 12)
-//        }
+        
         let update = GMSCameraUpdate.fit(circle.bounds())
         vwMap.animate(with: update)
     }
@@ -220,7 +218,14 @@ class MapVC: BaseVC {
     }
     
     func scheduleNotifications() {
+        //cancel all pending notifications
+        notificationCenter.removeAllPendingNotificationRequests()
         for event in Global.eventsData {
+            //if event hasn't started yet or has already ended, don't schedule a notification
+            if event.eventStart > Double(Date().currentTimeMillis()) || event.eventEnd < Double(Date().currentTimeMillis()) {
+                continue
+            }
+            
             let location = event.eventLocation.components(separatedBy: ",")
             let latitude = Double(location[0])!
             let longitude = Double(location[1])!

@@ -50,7 +50,7 @@ class DraggableMapVC: BaseVC {
     }
     
     func configureMap() {
-        vwMap.isMyLocationEnabled = true
+//        vwMap.isMyLocationEnabled = true
         vwMap.settings.compassButton = true
         vwMap.settings.myLocationButton = true
     }
@@ -74,6 +74,7 @@ class DraggableMapVC: BaseVC {
         marker.title = locationName
         marker.isDraggable = true
         marker.map = vwMap
+        marker.icon = UIImage(named: "ic_marker")
         vwMap.delegate = self
     }
     
@@ -108,6 +109,10 @@ class DraggableMapVC: BaseVC {
 
 extension DraggableMapVC: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
+        
+    }
+    
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
         ApiManager.getGeocodeData(latitude: marker.position.latitude, longitude: marker.position.longitude) { (response) in
             let geocodeData = GecoderResponse(fromDictionary: response as! [String:Any])
             self.txtLocationName.text = geocodeData.results.first?.formattedAddress

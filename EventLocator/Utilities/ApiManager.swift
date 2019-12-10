@@ -119,7 +119,7 @@ public class ApiManager {
     }
     
     static func uploadHighQualityPicture(picture: UIImage, eventId: String, completion: @escaping(String, String, Error?)->Void) {
-        let imageData = picture.jpegData(compressionQuality: 0.8)
+        let imageData = picture.jpegData(compressionQuality: 0.5)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         let timestampString = "\(eventId)_\(Date().currentTimeMillis())"

@@ -115,6 +115,7 @@ extension CreateEventVC: UITextFieldDelegate {
                 if date == nil {
                     return
                 }
+                // print(date)
                 let dateFormatter = DateFormatter()
                 
                 //specify the date Format
@@ -124,6 +125,7 @@ extension CreateEventVC: UITextFieldDelegate {
                 let dateString = dateFormatter.string(from: date!)
                 textField.text = dateString
                 self.eventData.eventStart = Double(date!.dateTimeString().convertToTimestamp())
+                // print(Double(date!.dateTimeString().convertToTimestamp()))
             }
 
             
