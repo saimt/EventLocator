@@ -32,12 +32,12 @@ class BaseVC: UIViewController {
         self.view.makeToast(message, duration: 2.0, position: .bottom, style: style)
     }
     
-    func showLoader() {
+    func showLoader(message: String = "") {
         if isIndicatorShown {
             return
         }
         
-        let activityData = ActivityData(size: nil, message: nil, messageFont: nil, messageSpacing: nil, type: .ballClipRotatePulse, color: nil, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil)
+        let activityData = ActivityData(size: nil, message: message, messageFont: nil, messageSpacing: nil, type: .ballClipRotatePulse, color: nil, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: nil, textColor: nil)
         isIndicatorShown = true
         NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
     }

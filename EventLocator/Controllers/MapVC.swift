@@ -47,7 +47,6 @@ class MapVC: BaseVC {
         initView()
         getCurrentLocation()
         configureMap()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,6 +148,8 @@ class MapVC: BaseVC {
     }
     
     func dropEventMarkers() {
+        self.vwMap.clear()
+        drawRadius()
         for (index,event) in Global.eventsData.enumerated() {
             let eventLocation = event.eventLocation!
             let latLng = eventLocation.components(separatedBy: ",")
@@ -159,7 +160,6 @@ class MapVC: BaseVC {
             marker.icon = UIImage(named: "ic_pin")
             marker.accessibilityHint = "\(index)"
             marker.map = vwMap
-            
         }
     }
     
@@ -274,7 +274,11 @@ class MapVC: BaseVC {
         let vc = self.storyboard?.instantiateViewController(identifier: "CreateEventVC") as! CreateEventVC
 //        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true) {
-
+        }
+        vc.callback = { (eventCreated) -> Void in
+            if eventCreated == true {
+                self.getCurrentLocation()
+            }
         }
     }
     

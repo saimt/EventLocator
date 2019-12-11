@@ -23,7 +23,8 @@ class CreateEventVC: BaseVC {
     //MARK: Variables
     var eventData = EventMapper(fromDictionary: [:])
     var coverPhoto: UIImage!
-    
+    var callback: ((_ eventCreated: Bool) -> Void)?
+    var isEventCreated = false
     //MARK: Load
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,8 @@ class CreateEventVC: BaseVC {
                 self.hideLoader()
                 if error == nil {
                     self.dismiss(animated: true, completion: nil)
+                    self.isEventCreated = true
+                    self.callback?(self.isEventCreated)
                 }
                 else {
                     self.showToast(error!.localizedDescription)
@@ -74,7 +77,7 @@ class CreateEventVC: BaseVC {
     
     @IBAction func btnCancelAction(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true) {
-            
+            self.callback?(self.isEventCreated)
         }
     }
     
